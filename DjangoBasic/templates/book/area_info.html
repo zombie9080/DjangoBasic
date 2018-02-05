@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>area_info</title>
+    {% extends 'base_template.html' %}
+</head>
+<body>
+{% block body %}
+    {% load base_filter %}
+    <ul>
+        {% for area in areas %}
+            <li>{{ area }}</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <br>
+    {% for index in areas.paginator.page_range %}
+        {% if index == areas.number %}
+            {{ index }}
+        {% elif areas.number|page_filter:index %}
+            <a href="/book/page{{ index }}/">{{ index }}</a>
+        {% endif %}
+    {% endfor %}
+{% endblock body %}
+</body>
+</html>
