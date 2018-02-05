@@ -2,6 +2,9 @@
 _Author_ = 'G.Liu'
 from django.template.library import Library
 
-rigister=Library()
+register = Library()
 
-def page_filter(current_index,index)
+
+@register.filter
+def page_filter(current_index, index):
+    pass
