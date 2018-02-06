@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+import logging
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -132,40 +132,40 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 
-# configuration for logging part
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'special': {
-            '()': 'django.utils.log.RequireDebugTrue'
-        }
-    },
-    'formatters': {},
-    'handlers': {
-        'file_handler': {
-            'level': 'DEBUG',
-            'class': 'logging.TimedRotatingFileHandler',
-            'filename': 'basic_log.log',
-
-        },
-        'console': {
-            'level': 'INFO',
-            'filters': ['special'],
-            'class': 'logging.StreamHandler',
-
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True
-        },
-        'django.db.backends': {
-            'handlers': ['console', 'file_handler'],
-            'level': 'DEBUG',
-            'propagate': True
-        }
-    }
-}
+# # configuration for logging part
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'filters': {
+#         'special': {
+#             '()': 'django.utils.log.RequireDebugTrue'
+#         }
+#     },
+#     'formatters': {},
+#     'handlers': {
+#         'file_handler': {
+#             'level': 'DEBUG',
+#             'class': 'logging.TimedRotatingFileHandler',
+#             'filename': 'basic_log.log',
+#
+#         },
+#         'console': {
+#             'level': 'INFO',
+#             'filters': ['special'],
+#             'class': 'logging.StreamHandler',
+#
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': True
+#         },
+#         'django.db.backends': {
+#             'handlers': ['console', 'file_handler'],
+#             'level': 'DEBUG',
+#             'propagate': True
+#         }
+#     }
+# }
