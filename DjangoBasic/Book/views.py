@@ -12,6 +12,25 @@ import random
 
 # Create your views here.
 
+def book_info(request):
+    book_list = Book.books.all()
+
+    # the query set of views contains an query instance 'query', in which function __str__() is implemented
+    # which could return the raw sql query command as a string
+    # for example: Book.books.all().query.__str__()
+    # the manager class has an attribute raw(sql) for executing raw sql command
+    print(book_list.query)
+
+    # defination for context, which would be return to visitor as response content
+    context = {
+        'book_list': book_list
+    }
+    # the response for a specific request would be rendered with a templates in given directory
+    # then be returned to browser
+    return render(request, 'book/book_info.html', context)
+
+
+
 def login(request):
     return render(request, 'book/post.html')
 

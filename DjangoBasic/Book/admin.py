@@ -3,6 +3,12 @@ from django.contrib import admin
 from Book import BaseAdmin
 
 
+# Register your models here.
+
+# Here all models that could be controlled by administrators are registered,
+# which means an administrator, who could be created by a shell command 'python manage.py createsuperuser',
+# are granted the permission on the models registered here
+
 class RoleSubInLine(admin.TabularInline):
     model = Role
     extra = 5

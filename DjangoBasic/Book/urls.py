@@ -6,6 +6,8 @@ from django.contrib import admin
 from Book.views import login, verification, results, query_ajax, captcha, captcha_gen, \
     recognization, upload_image, storage, area_display
 
+# Here the route mapping information for views in book is given
+# which could help django to specify urls for each view
 app_name = 'Book'
 urlpatterns = [
     url(r'^login/$', login, name='login'),

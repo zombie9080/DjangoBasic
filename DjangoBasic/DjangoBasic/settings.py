@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
+# all application defined by developer should be added to the list below manually
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,6 +58,7 @@ ROOT_URLCONF = 'DjangoBasic.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # the path that used to mark the templates folder, in which all templates should be stored
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -77,6 +78,8 @@ WSGI_APPLICATION = 'DjangoBasic.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# All information for database connection should be added in the dictionary shown below
+# the default choice is Sqlite, a lightweight relational database which are used as builtin database of python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -110,6 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
+# For changing time zone and language code
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -127,3 +131,41 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
+
+# configuration for logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'special': {
+            '()': 'django.utils.log.RequireDebugTrue'
+        }
+    },
+    'formatters': {},
+    'handlers': {
+        'file_handler': {
+            'level': 'DEBUG',
+            'class': 'logging.TimedRotatingFileHandler',
+            'filename': 'basic_log.log',
+
+        },
+        'console': {
+            'level': 'INFO',
+            'filters': ['special'],
+            'class': 'logging.StreamHandler',
+
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
+        'django.db.backends': {
+            'handlers': ['console', 'file_handler'],
+            'level': 'DEBUG',
+            'propagate': True
+        }
+    }
+}
