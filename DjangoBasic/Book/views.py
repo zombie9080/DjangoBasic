@@ -133,3 +133,24 @@ def area_display(request, page_id):
     context = {'areas': page_manager.page(page_id)}
     return render(request, 'book/area_info.html', context)
 
+
+def area_select(request):
+    return render(request, 'book/area_select.html')
+
+
+def show_province(request):
+    province_list = Area.objects.filter(parent__isnull=True)
+    json_data = {'province_list': [{'name': x.name, 'id': x.id} for x in province_list]}
+    return JsonResponse(json_data)
+
+
+def show_city(request):
+    city_list = Area.objects.filter(parent=request.GET.get('province_id'))
+    json_data = {'city_list': [{'name': x.name, 'id': x.id} for x in city_list]}
+    return JsonResponse(json_data)
+
+
+def show_area(request):
+    area_list = Area.objects.filter(parent=request.GET.get('city_id'))
+    json_data = {'area_list': [{'name': x.name, 'id': x.id} for x in area_list]}
+    return JsonResponse(json_data)
