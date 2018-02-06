@@ -7,10 +7,11 @@ from Book.views import login, verification, results, query_ajax, captcha, captch
     recognization, upload_image, storage, area_display, area_select, show_province, show_city, \
     show_area
 
-# Here the route mapping information for views in book is given
+# Here the route mapping patterns for views in Book is given
 # which could help django to specify urls for each view
 app_name = 'Book'
 urlpatterns = [
+    # The argument name is declared for reversing url from templates.
     url(r'^login/$', login, name='login'),
     url(r'^login/verification/$', verification, name='verification'),
     url(r'^results$', results, name='results'),
