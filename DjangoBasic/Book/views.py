@@ -30,7 +30,6 @@ def book_info(request):
     return render(request, 'book/book_info.html', context)
 
 
-
 def login(request):
     return render(request, 'book/post.html')
 
@@ -43,17 +42,19 @@ def verification(request):
     if u_name == 'a' and u_pwd == '123':
         request.session['session_info'] = 'info'
         temp_book = Book.books.filter(id=b_id)
-        return HttpResponseRedirect(reverse('Book:results'))
+        return HttpResponseRedirect(reverse('Book:results') + '?id=%s' % (b_id))
     else:
         return HttpResponseForbidden('Request Denied')
 
 
 def results(request):
     try:
-        print(request.session['session_info'])
+        info = request.session['session_info']
+        print('the session info find in redis is: %s' % info)
     except:
         return HttpResponseForbidden('Request Denied')
     else:
+        id = request.GET.get('id')
         return render(request, 'book/results.html')
 
 
@@ -131,3 +132,4 @@ def area_display(request, page_id):
     page_manager = Paginator(areas, 10)
     context = {'areas': page_manager.page(page_id)}
     return render(request, 'book/area_info.html', context)
+
