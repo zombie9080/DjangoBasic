@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LogIn</title>
+</head>
+<body>
+{% extends 'base_template.html' %}
+{% block body %}
+    <form action="{% url 'Book:verification' %}" method="post">
+        {% csrf_token %}
+        please input your nick name<input type="text" name="name">
+        <br>
+        <br>
+        please input your password<input type="password" name="password">
+        <br>
+        <br>
+        please choose the novel you want to query
+        <input type="radio" name="id" value="1">1<input type="radio" name="id" value="2">2<input type="radio" name="id"
+                                                                                                 value="3">3<input
+            type="radio" name="id" value="4">4
+        <br>
+        <br>
+        please choose the gender of roles you would like to query
+        <input type="checkbox" name="gender" value="male">male<input type="checkbox" name="gender" value="female">female
+        <br>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+{% endblock body %}
+</body>
+</html>

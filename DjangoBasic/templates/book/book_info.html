@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Information</title>
+    <style>
+        ul li {
+            list-style: none;
+
+        }
+
+        li {
+            width: 100px;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            background-color: #c9e2b3;
+            border: solid floralwhite 1px;
+        }
+
+        a {
+            font-size: 18px;
+            text-decoration: none;
+            font-family: "Microsoft YaHei UI";
+        }
+    </style>
+</head>
+<body>
+<ul>
+    {% for book in book_list %}
+        <li><a href={{ book.id }}>{{ book.name }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

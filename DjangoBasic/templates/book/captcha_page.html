@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Captcha</title>
+</head>
+<body>
+{% extends 'base_template.html' %}
+{% block body %}
+    <form action="{% url 'Book:recognization' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="code" placeholder="input captcha">input captcha
+        <input type="submit" value="submit">
+    </form>
+    <br>
+    <image src="{% url 'Book:captcha_gen' %}" alt="captcha">
+{% endblock body %}
+</body>
+</html>

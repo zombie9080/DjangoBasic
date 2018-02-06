@@ -6,5 +6,7 @@ register = Library()
 
 
 @register.filter
-def page_filter(current_index, index):
-    pass
+def page_filter(page_index, current_index):
+    if abs(current_index - page_index) <= 2:
+        return True
+    return False
