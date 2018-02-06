@@ -132,7 +132,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 
-# configuration for logging
+# configuration for logging part
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
